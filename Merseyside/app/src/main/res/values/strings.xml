@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Merseyside</string>
+    <string name="emblem">TODO</string>
+    <string name="hello_world">TextView</string>
+    <string name="Home">Name</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+</resources>
