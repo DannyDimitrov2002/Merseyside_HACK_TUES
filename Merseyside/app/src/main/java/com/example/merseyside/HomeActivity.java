@@ -1,5 +1,6 @@
 package com.example.merseyside;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,6 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
 public class HomeActivity extends AppCompatActivity {
-
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
@@ -77,6 +77,10 @@ public class HomeActivity extends AppCompatActivity {
 
             System.out.println("account: " + account.getEmail());
             System.out.println(account.getId());
+
+            Intent myIntent = new Intent(this, NewActivity.class);
+            this.startActivity(myIntent);
+
             // Signed in successfully, show authenticated UI.
 
         } catch (ApiException e) {
