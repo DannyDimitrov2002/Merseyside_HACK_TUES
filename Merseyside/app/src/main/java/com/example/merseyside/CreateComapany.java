@@ -3,7 +3,10 @@ package com.example.merseyside;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +14,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -63,28 +72,19 @@ public class CreateComapany extends Fragment {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    FirebaseRecyclerOptions<Post> options;
+    FirebaseRecyclerAdapter<Post, MyRecycleViewHolder> adapter;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) { //protected !!!!!!!!!!!!!
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        edit_content = getActivity().findViewById(R.id.edt_content);
-        edit_title = getActivity().findViewById(R.id.edt_title);
-        btn_post = getActivity().findViewById(R.id.bnt_post);
-        recyclerView = getActivity().findViewById(R.id.recycler);
-
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("EDMT_FIREBASE");
+        databaseReference = firebaseDatabase.getReference("ancient-flag-234610");
 
-        btn_post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                postComment();
-            }
-        });
     }
 
     private void postComment() {
@@ -93,6 +93,35 @@ public class CreateComapany extends Fragment {
 
         Post post = new Post(title,content);
         databaseReference.push().setValue(post);
+
+        adapter.notifyDataSetChanged();
+
+
+    }
+    private void displayComment(){
+        options =
+                new FirebaseRecyclerOptions.Builder<Post>()
+                        .setQuery(databaseReference,Post.class)
+                        .build();
+        adapter =
+                new FirebaseRecyclerAdapter<Post, MyRecycleViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull MyRecycleViewHolder holder, int position, @NonNull Post model) {
+                        holder.txt_title.setText(model.getTitle());
+                        holder.txt_comment.setText(model.getContent());
+
+                    }
+
+                    @NonNull
+                    @Override
+                    public MyRecycleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                        View itemView = LayoutInflater.from(getActivity().getBaseContext()).inflate(R.layout.post_item,viewGroup, false); //!!!!!!!!!!!!!!!!!!!!!!!!
+                        return new MyRecycleViewHolder(itemView);
+                    }
+                };
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
+
     }
 
     @Override
@@ -100,6 +129,52 @@ public class CreateComapany extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_comapany, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        edit_content = view.findViewById(R.id.edt_content);
+        edit_title = view.findViewById(R.id.edt_title);
+        btn_post = view.findViewById(R.id.btn_post);
+        recyclerView = view.findViewById(R.id.recycler);
+
+        //System.out.println("edit_content: " + edit_content);
+        //System.out.println("edit_title: " + edit_title);
+        //System.out.println("btn_post: " + btn_post);
+        //System.out.println("recyclerView: " + recyclerView);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        btn_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                postComment();
+            }
+        });
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                displayComment();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        displayComment();
+    }
+
+    public void onStop(){
+        if(adapter != null)
+            adapter.stopListening();
+        super.onStop();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
