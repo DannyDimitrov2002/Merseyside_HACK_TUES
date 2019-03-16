@@ -121,7 +121,7 @@ public class MenuActivity extends AppCompatActivity
         } else if (id == R.id.nav_alert) {
             fragment = new AlertFragment();
         } else if (id == R.id.nav_notes) {
-
+            fragment = new NotesFragment();
         } else if (id == R.id.nav_manage) {
             fragment = new ToolsFragment();
         } else if (id == R.id.nav_logOut) {
