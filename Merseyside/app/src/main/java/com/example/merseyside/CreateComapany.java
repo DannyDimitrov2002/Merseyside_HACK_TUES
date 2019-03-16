@@ -8,14 +8,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +40,7 @@ public class CreateComapany extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     EditText edit_title,edit_content;
-    Button btn_post;
+    Button btn_post, btn_update, btn_delete;
     RecyclerView recyclerView;
 
     private static final String ARG_PARAM1 = "param1";
@@ -74,6 +78,10 @@ public class CreateComapany extends Fragment {
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<Post> options;
     FirebaseRecyclerAdapter<Post, MyRecycleViewHolder> adapter;
+
+    Post selectedPost;
+    String selectedKey;
+
     @Override
     public void onCreate(Bundle savedInstanceState) { //protected !!!!!!!!!!!!!
         super.onCreate(savedInstanceState);
@@ -106,10 +114,21 @@ public class CreateComapany extends Fragment {
         adapter =
                 new FirebaseRecyclerAdapter<Post, MyRecycleViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull MyRecycleViewHolder holder, int position, @NonNull Post model) {
+                    protected void onBindViewHolder(@NonNull MyRecycleViewHolder holder, final int position, @NonNull final Post model) {
                         holder.txt_title.setText(model.getTitle());
                         holder.txt_comment.setText(model.getContent());
 
+                        holder.setItemClickListener(new ItemClickListener() {
+                            @Override
+                            public void onClick(View view, int postion) {
+                                selectedPost = model;
+                                selectedKey = getSnapshots().getSnapshot(position).getKey();
+                                Log.d("KEy Item", "" + selectedKey);
+
+                                edit_content.setText(model.getContent());
+                                edit_title.setText(model.getTitle());
+                            }
+                        });
                     }
 
                     @NonNull
@@ -138,6 +157,8 @@ public class CreateComapany extends Fragment {
         edit_content = view.findViewById(R.id.edt_content);
         edit_title = view.findViewById(R.id.edt_title);
         btn_post = view.findViewById(R.id.btn_post);
+        btn_update = view.findViewById(R.id.btn_update);
+        btn_delete = view.findViewById(R.id.btn_delete);
         recyclerView = view.findViewById(R.id.recycler);
 
         //System.out.println("edit_content: " + edit_content);
@@ -154,12 +175,50 @@ public class CreateComapany extends Fragment {
             }
         });
 
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedKey != null) {
+                    databaseReference.child(selectedKey).setValue(new Post(edit_title.getText().toString(),
+                            edit_content.getText().toString())).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getActivity(), "Updated !", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
+            }
+        });
+
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedKey != null) {
+                    databaseReference.child(selectedKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getActivity(), "Updated !", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+
         databaseReference.addValueEventListener(new ValueEventListener() {
-
-
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                displayComment();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
