@@ -6,8 +6,6 @@
     android:orientation="vertical"
     tools:context=".CreateComapany">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <EditText
         android:id="@+id/edt_title"
         android:hint="Title"

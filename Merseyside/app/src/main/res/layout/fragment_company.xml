@@ -8,21 +8,6 @@
 
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="322dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="515dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="154dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/join_company"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/button"
         android:layout_width="322dp"
         android:layout_height="62dp"

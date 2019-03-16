@@ -83,7 +83,7 @@ public class CreateComapany extends Fragment {
     String selectedKey;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) { //protected !!!!!!!!!!!!!
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -103,7 +103,6 @@ public class CreateComapany extends Fragment {
         databaseReference.push().setValue(post);
 
         adapter.notifyDataSetChanged();
-
 
     }
     private void displayComment(){
@@ -134,7 +133,7 @@ public class CreateComapany extends Fragment {
                     @NonNull
                     @Override
                     public MyRecycleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                        View itemView = LayoutInflater.from(getActivity().getBaseContext()).inflate(R.layout.post_item,viewGroup, false); //!!!!!!!!!!!!!!!!!!!!!!!!
+                        View itemView = LayoutInflater.from(getActivity().getBaseContext()).inflate(R.layout.post_item,viewGroup, false);
                         return new MyRecycleViewHolder(itemView);
                     }
                 };
@@ -152,6 +151,7 @@ public class CreateComapany extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
 
         edit_content = view.findViewById(R.id.edt_content);
