@@ -4,9 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 /**
@@ -20,6 +26,10 @@ import android.view.ViewGroup;
 public class CreateComapany extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    EditText edit_title,edit_content;
+    Button btn_post;
+    RecyclerView recyclerView;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -51,6 +61,8 @@ public class CreateComapany extends Fragment {
         return fragment;
     }
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +70,29 @@ public class CreateComapany extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        edit_content = getActivity().findViewById(R.id.edt_content);
+        edit_title = getActivity().findViewById(R.id.edt_title);
+        btn_post = getActivity().findViewById(R.id.bnt_post);
+        recyclerView = getActivity().findViewById(R.id.recycler);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("EDMT_FIREBASE");
+
+        btn_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postComment();
+            }
+        });
+    }
+
+    private void postComment() {
+        String title = edit_title.getText().toString();
+        String content = edit_content.getText().toString();
+
+        Post post = new Post(title,content);
+        databaseReference.push().setValue(post);
     }
 
     @Override
