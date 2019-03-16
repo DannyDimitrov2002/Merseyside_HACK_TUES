@@ -17,4 +17,7 @@
     <string name="create_company">Create Company</string>
     <string name="join_company">Join Company</string>
     <string name="comp_logo">TODO</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
