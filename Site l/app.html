@@ -51,14 +51,40 @@
 }
 #mybutton {
   position: fixed;
-  bottom: 10px;
+  bottom: 11px;
   right: 30px;
+
+}
+#tekst{
+position: fixed;
+
+    bottom: 15%;
+  	right: 34%;
+  	width: 30%;
+	height: 450px;
+	font-size: 150%;
+}
+#dwt{
+	position: fixed;
+  bottom: 24px;
+  right: 230px;
+  font-size: 200%;
+
+}
+#fixedLogo{
+position: fixed;
+
+    bottom: 30%;
+  	right: 3%;
+  	width: 20%;
+	height: 320px;
+	font-size: 150%;
 }
 </style>
 
 
 
-<body>	
+<body>
 <div class="btn-group" style="width:72%;margin-left: 29%">
   <button style="width:33.3%"onclick=window.open("App.html",'_self')>Home</button>
   <button style="width:33.3%"onclick=window.open("tips.html",'_self');>Tips</button>
@@ -66,11 +92,15 @@
 </div>
 
 
-<p align="left:50%">This is some text in a paragraph.</p>
+<b id ="tekst">Phoneix is Android app (Beta version) which can organize your workday.  It’s created on Android Studio with Java. The main idea is that your boss can send tasks to his employees. He can create Task name and Task description. In the description he can upload deadline.</b>
+
 
 <div id="mybutton">
 <button class="dw">Download</button>
 </div>
 
 <img src="backgrounnd.png" alt="background" id="fixedImg">
+<b size="10" style="font-style:sans-serif;"id ="dwt">You can download the app from here =></b>	
+<img src="logo.jpg" id="fixedLogo">
+
 </body>

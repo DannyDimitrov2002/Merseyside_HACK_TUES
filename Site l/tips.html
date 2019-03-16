@@ -2,6 +2,7 @@
 <html>
 <style>
 
+
 .btn-group button {
   background-color: #000000; 
   border: 1px red; 
@@ -23,6 +24,7 @@
 .btn-group button:hover {
   background-color: #ff0000;
 }
+
 #fixedImg{
 	position: fixed;
 	top:0;
@@ -30,7 +32,80 @@
 	width: 30%;
 	height: 800px;
 }
+
+.cg {
+  background-color : #000000;
+  color: white;
+  padding: 20px 40px;
+  border: 1px #ff0000; 
+  color: white; 
+  padding: 20px 45px; 
+  cursor: pointer; 
+  float: left; 
+  margin-top: -8px;
+  position: fixed;
+  bottom: 100px;
+  right: 300px;
+}
+.cg:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.cg:hover {
+  background-color: #ff0000;
+}
+.cg2 {
+  background-color : #000000;
+  color: white;
+  padding: 20px 40px;
+  border: 1px #ff0000; 
+  color: white; 
+  padding: 20px 35px; 
+  cursor: pointer; 
+  float: left; 
+  margin-top: -8px;
+  position: fixed;
+  bottom: 100px;
+  right: 450px;
+}
+.cg2:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.cg2:hover {
+  background-color: #ff0000;
+}
+#fixedImg3{
+	position: fixed;
+    bottom: 5%;
+  	right: 45%;
+  	width: 20%;
+	height: 600px;
+}
+#fixedImg2{
+	position: fixed;
+    bottom: 12.5%;
+  	right: 46.1%;
+  	width: 17.9%;
+	height: 490px;
+}
+#tekst{
+position: fixed;
+
+    bottom: 15%;
+    right: 20%;
+    width: 20%;
+  height: 450px;
+}
 </style>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/tips.js"></script>
+</head>
+
 <body>
 
 <div class="btn-group" style="width:72%;margin-left: 29%">
@@ -39,8 +114,18 @@
   <button style="width:33.3%"onclick=window.open("z_about_us.html",'_self');>About Us</button>
 </div>
  >
-				
+<font size="5" style="font-style:sans-serif;"id ="tekst">STEP 1 </font>				
 			
 		
 <img src="backgrounnd.png" alt="background" id="fixedImg">
+
+<img src="tel.jpeg" id="fixedImg3">
+<img src="bk.jpg" id="fixedImg2">
+
+<button class="cg" onclick="mvNextScr()">Next</button>
+<button class="cg2" onclick="mvPrevScr()">Previous</button>
+
+
+
+
 </body>
