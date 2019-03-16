@@ -1,6 +1,7 @@
 package com.example.merseyside;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,11 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,7 +36,16 @@ public class MenuActivity extends AppCompatActivity
 
         setTitle("Phoneix");
 
+        Fragment fragment = null;
+        fragment = new HomeFragment();
+        if(fragment != null){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
 
+            ft.replace(R.id.screen_area, fragment);
+
+            ft.commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,6 +61,14 @@ public class MenuActivity extends AppCompatActivity
         emailView.setText(getIntent().getStringExtra("EMAIL"));
         TextView nameView = headerView.findViewById(R.id.nameView);
         nameView.setText(getIntent().getStringExtra("NAME"));
+
+        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -92,8 +115,14 @@ public class MenuActivity extends AppCompatActivity
             fragment = new CompanyFragment();
         } else if (id == R.id.nav_slideshow) {
             fragment = new CalendarFragment();
+        } else if (id == R.id.nav_alert) {
+            fragment = new AlertFragment();
+        } else if (id == R.id.nav_notes) {
+
         } else if (id == R.id.nav_manage) {
             fragment = new ToolsFragment();
+        } else if (id == R.id.nav_logOut) {
+
         }
 
         if(fragment != null){
@@ -105,8 +134,11 @@ public class MenuActivity extends AppCompatActivity
             ft.commit();
         }
 
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-}
+    }
+
