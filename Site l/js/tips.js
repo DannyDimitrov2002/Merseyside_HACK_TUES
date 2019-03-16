@@ -32,10 +32,10 @@ function prevP(){
 
 
 
-var t1 = "Step 1";
-var t2 = "Step 2";
-var t3 = "Step 3";
-var t4 = "Step 4";
+var t1 = "STEP 1";
+var t2 = "STEP 2";
+var t3 = "STEP 3";
+var t4 = "STEP 4";
 
 var txt = [t1,t2,t3,t4];
 var l = 0;
