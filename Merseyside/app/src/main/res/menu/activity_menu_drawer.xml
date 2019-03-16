@@ -16,10 +16,24 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/calendar_img"
             android:title="Calendar" />
+
+        <item
+            android:id="@+id/nav_alert"
+            android:icon="@drawable/alert_img"
+            android:title="Alerts" />
+        <item
+            android:id="@+id/nav_notes"
+            android:icon="@drawable/notes_img"
+            android:title="Notes" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />
+
+        <item
+            android:id="@+id/nav_logOut"
+            android:icon="@drawable/log_out_img"
+            android:title="Log Out" />
     </group>
 
 </menu>

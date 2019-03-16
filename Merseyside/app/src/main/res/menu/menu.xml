@@ -9,4 +9,10 @@
     <item android:id="@+id/app_tools"
         android:title="Tools"/>
 
+
+
+
+    <item android:id="@+id/log_out"
+        android:title="Log out"/>
+
 </menu>
