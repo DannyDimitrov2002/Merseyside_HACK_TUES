@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:background="@drawable/redox_02">
 
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="358dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="515dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="154dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/join_company"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="358dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="421dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="248dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/create_company"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="136dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="174dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="415dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/company_fragment"
+        android:contentDescription="@string/comp_logo" />
 
 </android.support.constraint.ConstraintLayout>

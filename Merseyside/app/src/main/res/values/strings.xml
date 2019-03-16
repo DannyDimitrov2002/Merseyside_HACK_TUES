@@ -14,4 +14,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="create_company">Create Company</string>
+    <string name="join_company">Join Company</string>
+    <string name="comp_logo">TODO</string>
 </resources>
