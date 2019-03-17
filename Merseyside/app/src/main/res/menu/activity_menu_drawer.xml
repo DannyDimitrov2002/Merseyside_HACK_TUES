@@ -26,22 +26,18 @@
             android:icon="@drawable/notes_img"
             android:title="Notes" />
 
-        <item android:title="">
-            <menu>
-                <item
-                    android:id="@+id/nav_manage"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="Tools" />
-                <item
-                    android:id="@+id/nav_about_us"
-                    android:icon="@drawable/company_img"
-                    android:title="About us" />
-                <item
-                    android:id="@+id/nav_logOut"
-                    android:icon="@drawable/log_out_img"
-                    android:title="Log Out" />
-            </menu>
-        </item>
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/company_img"
+            android:title="About us" />
+        <item
+            android:id="@+id/nav_logOut"
+            android:icon="@drawable/log_out_img"
+            android:title="Log Out" />
 
     </group>
 
