@@ -27,19 +27,24 @@
 
         <Button
             android:id="@+id/btn_post"
-            android:text="@string/btn_post"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_dark"
+            android:text="@string/btn_post" />
+
         <Button
             android:id="@+id/btn_update"
-            android:text="UPDATE"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_orange_dark"
+            android:text="UPDATE" />
+
         <Button
             android:id="@+id/btn_delete"
-            android:text="DELETE"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_dark"
+            android:text="DELETE" />
 
 
 
@@ -48,7 +53,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
 
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

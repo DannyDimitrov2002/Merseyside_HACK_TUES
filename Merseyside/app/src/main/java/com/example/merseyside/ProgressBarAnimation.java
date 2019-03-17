@@ -1,5 +1,5 @@
 package com.example.merseyside;
-
+//For Loading screen
 import android.content.Context;
 import android.content.Intent;
 import android.view.animation.Animation;

@@ -10,8 +10,8 @@
             android:title="Home" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/company_img"
-            android:title="Company" />
+            android:icon="@drawable/task_img"
+            android:title="Tasks" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/calendar_img"
@@ -32,6 +32,10 @@
                     android:id="@+id/nav_manage"
                     android:icon="@drawable/ic_menu_manage"
                     android:title="Tools" />
+                <item
+                    android:id="@+id/nav_about_us"
+                    android:icon="@drawable/company_img"
+                    android:title="About us" />
                 <item
                     android:id="@+id/nav_logOut"
                     android:icon="@drawable/log_out_img"

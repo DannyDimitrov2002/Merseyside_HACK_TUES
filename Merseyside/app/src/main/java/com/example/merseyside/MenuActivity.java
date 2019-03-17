@@ -1,5 +1,5 @@
 package com.example.merseyside;
-
+//Menu(Navigation drawer)
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -124,6 +124,8 @@ public class MenuActivity extends AppCompatActivity
             fragment = new NotesFragment();
         } else if (id == R.id.nav_manage) {
             fragment = new ToolsFragment();
+        } else if (id == R.id.nav_about_us) {
+            fragment = new AboutUsFragment();
         } else if (id == R.id.nav_logOut) {
 
         }
